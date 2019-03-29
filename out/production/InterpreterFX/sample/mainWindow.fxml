@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="750.0" prefWidth="1300.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.MainWindow">
+   <padding>
+      <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+   </padding>
+   <children>
+      <BorderPane layoutX="50.0" layoutY="50.0" prefHeight="700.0" prefWidth="1200.0">
+         <bottom>
+            <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Label text="Output" translateX="50.0">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Label>
+                  <ListView fx:id="output" editable="true" orientation="HORIZONTAL" prefHeight="200.0" prefWidth="300.0" translateX="50.0">
+                     <HBox.margin>
+                        <Insets bottom="10.0" left="30.0" right="10.0" top="10.0" />
+                     </HBox.margin>
+                  </ListView>
+                  <Button fx:id="runOneStep" mnemonicParsing="false" onAction="#oneStep" text="Run one step" translateX="500.0">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </HBox.margin>
+                  </Button>
+                  <TextField fx:id="errorTf" editable="false" prefHeight="31.0" prefWidth="280.0" promptText="Error" translateX="-30.0">
+                     <font>
+                        <Font size="17.0" />
+                     </font>
+                  </TextField>
+               </children>
+            </HBox>
+         </bottom>
+         <left>
+            <VBox prefHeight="500.0" prefWidth="286.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Label text="File Table">
+                     <font>
+                        <Font size="25.0" />
+                     </font>
+                  </Label>
+                  <TableView fx:id="fileTable" editable="true" prefHeight="228.0" prefWidth="286.0">
+                    <columns>
+                      <TableColumn fx:id="fileDescriptorColumn" minWidth="20.0" prefWidth="90.0" text="Descriptor" />
+                      <TableColumn fx:id="fileNameColumn" minWidth="20.0" prefWidth="195.0" text="File name" />
+                    </columns>
+                  </TableView>
+                  <Label text="Proc Table">
+                     <font>
+                        <Font size="25.0" />
+                     </font>
+                  </Label>
+                  <TableView fx:id="procTable" prefHeight="215.0" prefWidth="286.0">
+                    <columns>
+                      <TableColumn fx:id="procNameColumn" prefWidth="85.0" text="Proc name" />
+                      <TableColumn fx:id="bodyProcColumn" prefWidth="195.0" text="Parameters and body" />
+                    </columns>
+                  </TableView>
+               </children>
+            </VBox>
+         </left>
+         <right>
+            <VBox prefHeight="500.0" prefWidth="155.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Label text="Heap Table">
+                     <font>
+                        <Font size="25.0" />
+                     </font>
+                  </Label>
+                  <TableView fx:id="heapTable" editable="true" prefHeight="450.0" prefWidth="150.0">
+                    <columns>
+                      <TableColumn fx:id="heapAddressColumn" prefWidth="75.0" text="Address" />
+                      <TableColumn fx:id="heapValueColumn" prefWidth="75.0" text="Value" />
+                    </columns>
+                  </TableView>
+               </children>
+            </VBox>
+         </right>
+         <top>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Label text="Number of PrgStates">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </HBox.margin>
+                  </Label>
+                  <TextField fx:id="numberOfPrgStates" editable="false">
+                     <HBox.margin>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </HBox.margin>
+                  </TextField>
+                  <Label text="List of PrgState identifiers" translateX="50.0">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </HBox.margin>
+                  </Label>
+                  <ListView fx:id="idList" editable="true" onMouseClicked="#handlePrgStateSelection" orientation="HORIZONTAL" prefHeight="200.0" prefWidth="200.0" translateX="50.0">
+                     <HBox.margin>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </HBox.margin>
+                  </ListView>
+               </children>
+            </HBox>
+         </top>
+         <center>
+            <GridPane hgap="10.0" vgap="10.0" BorderPane.alignment="CENTER">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="-Infinity" minHeight="0.0" prefHeight="0.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <BorderPane.margin>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </BorderPane.margin>
+               <children>
+                  <Label text="Exe Stack">
+                     <font>
+                        <Font size="25.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </GridPane.margin>
+                  </Label>
+                  <Label text="Sym Table" GridPane.columnIndex="1">
+                     <font>
+                        <Font size="25.0" />
+                     </font>
+                  </Label>
+                  <ListView fx:id="exeStack" editable="true" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1" />
+                  <TableView fx:id="symTable" prefHeight="153.0" prefWidth="311.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                    <columns>
+                      <TableColumn fx:id="symVarColumn" prefWidth="175.0" text="Variable name" />
+                      <TableColumn fx:id="symValueColumn" prefWidth="175.0" text="Value" />
+                    </columns>
+                  </TableView>
+               </children>
+            </GridPane>
+         </center>
+      </BorderPane>
+   </children>
+</AnchorPane>
